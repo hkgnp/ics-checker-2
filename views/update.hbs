@@ -1,0 +1,83 @@
+{{#extends "base"}}
+
+  {{#block "title"}}🧠 Update Availability{{/block}}
+
+  {{#block "content"}}
+    <a
+      class="bg-green-500 hover:bg-green-700 text-white text-xs w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      href="/user/change-password"
+    >
+      Click here if you want to change your password
+    </a>
+    <div
+      class="mb-5 w-full bg-gray-900 rounded-lg shadow-lg p-12 justify-center items-center lg:col-span-3 sm:col-span-3 md:col-span-3"
+    >
+      <div class="text-center">
+        <p class="text-xl text-white font-bold mb-4">Updating for
+          {{orgName.org_name}}</p>
+      </div>
+      <form method="post">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+        <label
+          class="block text-gray-300 text-sm font-bold mb-1"
+          for="earliest_admission"
+        >
+          Earliest admission date
+        </label>
+        <input
+          class="shadow appearance-none border rounded mb-4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="earliest_admission"
+          type="date"
+          name="earliest_admission"
+          value={{dateFormat orgName.earliest_admission "YYYY-MM-DD"}}
+        />
+        <label
+          class="block text-gray-300 text-sm font-bold mb-1"
+          for="medifund_cases"
+        >
+          No. of MediFund cases allowed
+        </label>
+        <input
+          class="shadow appearance-none border rounded mb-4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="medifund_cases"
+          type="tel"
+          name="medifund_cases"
+          placeholder=""
+          value={{orgName.medifund_cases}}
+        />
+        <hr class="mt-4" />
+        <p class="text-xl text-gray-400 font-normal mb-3 mt-5">
+          <i class="far fa-comment"></i>
+          Special Remarks</p>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="special_remarks"
+          type="text"
+          name="special_remarks"
+          placeholder=""
+          value="{{orgName.special_remarks}}"
+        />
+        <p class="text-white text-xs text-left italic mb-4 mt-2" id="count"></p>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  {{/block}}
+
+  {{#block "js"}}
+    <script>
+      let specialRemarks = document.getElementById('special_remarks');
+      specialRemarks.onkeyup = () => { let maxLength = 800; if
+      (specialRemarks.value.length < maxLength) {
+      document.getElementById('count').innerHTML =
+      `${specialRemarks.value.length}/800` } else {
+      document.getElementById('count').innerHTML = `<span
+      class="text-red-100">${specialRemarks.value.length}/800 You have exceeded
+      the maximum number of characters</span>` } }
+    </script>
+  {{/block}}
+{{/extends}}

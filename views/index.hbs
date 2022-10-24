@@ -1,0 +1,44 @@
+{{#extends "base"}}
+
+  {{#block "title"}}ICS Checker{{/block}}
+
+  {{#block "instructions"}}
+    <p class="text-lg text-gray-300 text-center font-bold mb-4">Thank you for
+      using this application. Kindly note that updates are usually made every
+      Monday and accurate as of the date reflected.</p>{{/block}}
+
+  {{#block "content"}}
+
+    {{#each icsDetails}}
+      <div
+        class="mb-5 w-full bg-gray-900 rounded-lg shadow-lg p-12 justify-center items-center"
+      >
+        <div class="text-center">
+          <p class="text-xl text-white font-bold mb-2">{{this.org_name}}</p>
+          <p class="text-base text-gray-400 font-normal">{{dateFormat
+              this.last_updated
+              "Do MMMM YYYY"
+            }}</p>
+          <hr class="mt-4" />
+          <div class="grid grid-cols-2 my-5">
+            <p class="text-base text-gray-400 font-normal mb-2">Earliest admission</p>
+            <p class="text-xl text-white font-bold mb-2">{{dateFormat
+                this.earliest_admission
+                "Do MMMM YYYY"
+              }}</p>
+            <p class="text-base text-gray-400 font-normal">MediFund cases
+              allowed</p>
+            <p class="text-xl text-white font-bold">{{this.medifund_cases}}</p>
+          </div>
+          <hr />
+          <p
+            class="mt-5 bg-green-500 rounded-lg p-3 text-base text-white font-normal"
+          >
+            {{this.special_remarks}}
+          </p>
+        </div>
+      </div>
+    {{/each}}
+
+  {{/block}}
+{{/extends}}
