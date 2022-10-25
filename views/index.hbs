@@ -15,13 +15,18 @@
       >
         <div class="text-center">
           <p class="text-xl text-white font-bold mb-2">{{this.org_name}}</p>
+          <p class="text-base text-white font-bold mb-2"><i
+              class="fa-solid fa-square-phone"
+            ></i>
+            {{this.contact}}</p>
           <p class="text-base text-gray-400 font-normal">{{dateFormat
               this.last_updated
               "Do MMMM YYYY"
             }}</p>
           <hr class="mt-4" />
           <div class="grid grid-cols-2 my-5">
-            <p class="text-base text-gray-400 font-normal mb-2">Earliest admission</p>
+            <p class="text-base text-gray-400 font-normal mb-2">Earliest
+              admission</p>
             <p class="text-xl text-white font-bold mb-2">{{dateFormat
                 this.earliest_admission
                 "Do MMMM YYYY"
