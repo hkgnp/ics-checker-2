@@ -1,13 +1,13 @@
-const mongoClient = require('mongodb').MongoClient;
+const mongoClient = require("mongodb").MongoClient;
 
 async function connect(mongoUrl, dbName) {
   // create a client
-  let client = mongoClient.connect(mongoUrl, {
+  let client = await mongoClient.connect(mongoUrl, {
     useUnifiedTopology: true,
   });
   // use a database;
   let db = client.db(dbName);
-  console.log('MongoDB database connected');
+  console.log("MongoDB database connected");
   return db;
 }
 
