@@ -93,7 +93,7 @@ const userRoute = require("./routes/users");
 const updateRoute = require("./routes/update");
 
 (async () => {
-  const db = await MongoUtil.connect(mongoUrl, "ics-checker");
+  const db = await MongoUtil.connect(mongoUrl, process.env.COLLECTION);
 
   // add mongodb to middleware
   app.use((req, res, next) => {
