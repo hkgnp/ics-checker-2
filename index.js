@@ -95,11 +95,17 @@ const updateRoute = require("./routes/update");
 (async () => {
   const db = await MongoUtil.connect(mongoUrl, process.env.COLLECTION);
 
+  app.get("/_ah/warmup", (req, res) => {
+    // Handle your warmup logic. Initiate db connection, etc.
+    console.log("Warmup done");
+  });
+
   // add mongodb to middleware
   app.use((req, res, next) => {
     req.mongoClient = db;
     next();
   });
+
   app.use("/", indexRoute);
   app.use("/user", userRoute);
   app.use("/update", updateRoute);

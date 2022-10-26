@@ -28,20 +28,18 @@ router.post("/", async (req, res) => {
     const orgId = req.session.user.org_id;
 
     try {
-      const response = await req.mongoClient
-        .collection("organisations")
-        .updateOne(
-          { _id: ObjectId(orgId) },
-          {
-            $set: {
-              last_updated: new Date(),
-              earliest_admission: req.body.earliest_admission,
-              medifund_cases: req.body.medifund_cases,
-              special_remarks: req.body.special_remarks,
-            },
+      await req.mongoClient.collection("organisations").updateOne(
+        { _id: ObjectId(orgId) },
+        {
+          $set: {
+            last_updated: new Date(),
+            earliest_admission: req.body.earliest_admission,
+            medifund_cases: req.body.medifund_cases,
+            special_remarks: req.body.special_remarks,
           },
-          { upsert: true }
-        );
+        },
+        { upsert: true }
+      );
 
       req.flash("success_messages", "ICS details successfully updated!");
       res.redirect("/");
