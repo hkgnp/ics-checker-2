@@ -5,13 +5,15 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const csurf = require("csurf");
 const hbs = require("hbs");
+const helmet = require("helmet");
 
 const mongoUrl = process.env.MONGO_URL;
 const MongoUtil = require("./MongoUtil");
 
 const app = express();
-app.set("view engine", "hbs");
+app.use(helmet());
 
+app.set("view engine", "hbs");
 app.use(express.static("public"));
 
 wax.on(hbs.handlebars);
