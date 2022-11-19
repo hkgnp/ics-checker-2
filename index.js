@@ -103,12 +103,6 @@ const updateRoute = require("./routes/update");
     next();
   });
 
-  app.get("/_ah/warmup", (req, res) => {
-    // Handle your warmup logic. Initiate db connection, etc.
-    app.use("/", indexRoute);
-    console.log("Warmup done");
-  });
-
   app.use("/", indexRoute);
   app.use("/user", userRoute);
   app.use("/update", updateRoute);
